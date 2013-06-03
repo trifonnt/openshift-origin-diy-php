@@ -50,9 +50,9 @@ chmod +x runConfigureICU configure install-sh
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/icu/
 make && make install
 cd ../..
-wget http://de2.php.net/get/php-5.4.7.tar.gz/from/this/mirror
-tar -zxf php-5.4.7.tar.gz
-cd php-5.4.7
+wget http://de2.php.net/get/php-5.4.15.tar.gz/from/this/mirror
+tar -zxf php-5.4.15.tar.gz
+cd php-5.4.15
 ./configure \
 --with-libdir=lib64 \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
@@ -80,15 +80,16 @@ make && make install
 #
 # ADD elkuku - start
 #
-
-cd cd $OPENSHIFT_RUNTIME_DIR/tmp
+echo "KuKu start..."
+cd $OPENSHIFT_RUNTIME_DIR/tmp
 
 # Install xdebug
 wget http://xdebug.org/files/xdebug-2.2.3.tgz
-tar-zxf xdebug-2.2.3.tgz
+tar -zxf xdebug-2.2.3.tgz
 cd xdebug-2.2.3.tgz
 $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
-./configure --with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config
+./configure \
+--with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config
 make
 cp modules/xdebug.so OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no-debug-zts-20100525
 
@@ -106,3 +107,5 @@ python $OPENSHIFT_REPO_DIR/misc/httpconf.py
 
 # START APACHE
 $OPENSHIFT_RUNTIME_DIR/srv/httpd/bin/apachectl start
+
+echo "F I N I S H E D !!"
