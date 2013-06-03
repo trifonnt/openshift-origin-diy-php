@@ -230,7 +230,7 @@ DocumentRoot "{{OPENSHIFT_REPO_DIR}}/diy"
     # It can be "All", "None", or any combination of the keywords:
     #   Options FileInfo AuthConfig Limit
     #
-    AllowOverride None
+    AllowOverride All
 
     #
     # Controls who can get stuff from this server.
@@ -243,7 +243,7 @@ DocumentRoot "{{OPENSHIFT_REPO_DIR}}/diy"
 # is requested.
 #
 <IfModule dir_module>
-    DirectoryIndex index.html
+    DirectoryIndex index.html index.php
 </IfModule>
 
 #
