@@ -381,7 +381,7 @@ expose_php = On
 ; Maximum execution time of each script, in seconds
 ; http://php.net/max-execution-time
 ; Note: This directive is hardcoded to 0 for the CLI SAPI
-max_execution_time = 30
+max_execution_time = 120
 
 ; Maximum amount of time each script may spend parsing request data. It's a good
 ; idea to limit this time on productions servers in order to eliminate unexpectedly
@@ -751,7 +751,7 @@ enable_dl = Off
 ; will look for to know it is OK to continue execution.  Setting this variable MAY
 ; cause security issues, KNOW WHAT YOU ARE DOING FIRST.
 ; http://php.net/cgi.redirect-status-env
-;cgi.redirect_status_env = 
+;cgi.redirect_status_env =
 
 ; cgi.fix_pathinfo provides *real* PATH_INFO/PATH_TRANSLATED support for CGI.  PHP's
 ; previous behaviour was to set PATH_TRANSLATED to SCRIPT_FILENAME, and to not grok
