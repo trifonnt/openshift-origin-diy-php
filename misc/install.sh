@@ -61,7 +61,9 @@ cd php-5.4.7
 --with-apxs2=$OPENSHIFT_RUNTIME_DIR/srv/httpd/bin/apxs \
 --enable-mbstring \
 --enable-intl \
---with-icu-dir=$OPENSHIFT_RUNTIME_DIR/srv/icu
+--with-icu-dir=$OPENSHIFT_RUNTIME_DIR/srv/icu \
+--with-curl \
+--with-mysqli
 make && make install
 mkdir $OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2
 cd ..
