@@ -77,6 +77,25 @@ $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
 --enable-apc-debug=no
 make && make install
 
+#
+# ADD elkuku - start
+#
+
+cd cd $OPENSHIFT_RUNTIME_DIR/tmp
+
+# Install xdebug
+wget http://xdebug.org/files/xdebug-2.2.3.tgz
+tar-zxf xdebug-2.2.3.tgz
+cd xdebug-2.2.3.tgz
+$OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
+./configure --with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config
+make
+cp modules/xdebug.so OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no-debug-zts-20100525
+
+#
+# ADD elkuku - end
+#
+
 # CLEANUP
 rm -r $OPENSHIFT_RUNTIME_DIR/tmp/*.tar.gz
 
