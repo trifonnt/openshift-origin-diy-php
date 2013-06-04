@@ -3,7 +3,7 @@
 OPENSHIFT_RUNTIME_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime
 OPENSHIFT_REPO_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime/repo
 
-# Prepare directories
+echo "Prepare directories"
 cd $OPENSHIFT_RUNTIME_DIR
 mkdir srv
 mkdir srv/pcre
@@ -13,7 +13,7 @@ mkdir tmp
 
 cd tmp/
 
-# Install pcre
+echo "Install pcre"
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.33.tar.gz
 tar -zxf pcre-8.33.tar.gz
 cd pcre-8.33
@@ -22,7 +22,7 @@ cd pcre-8.33
 make && make install
 cd ..
 
-# Install Apache httpd
+echo "Install Apache httpd"
 wget http://ftp.halifax.rwth-aachen.de/apache/httpd/httpd-2.4.4.tar.gz
 tar -zxf httpd-2.4.4.tar.gz
 wget http://artfiles.org/apache.org/apr/apr-1.4.6.tar.gz
@@ -46,7 +46,7 @@ cd httpd-2.4.4
 make && make install
 cd ..
 
-# INSTALL ICU
+echo "INSTALL ICU"
 wget http://download.icu-project.org/files/icu4c/50.1/icu4c-50_1-src.tgz
 tar -zxf icu4c-50_1-src.tgz
 cd icu/source/
@@ -56,27 +56,39 @@ chmod +x runConfigureICU configure install-sh
 make && make install
 cd ../..
 
-# INSTALL PHP
+echo "Install zlib"
+wget http://zlib.net/zlib-1.2.8.tar.gz
+tar -zxf zlib-1.2.8.tar.gz
+cd zlib-1.2.8
+./configure \
+--prefix=$OPENSHIFT_RUNTIME_DIR/srv/zlib/
+make && make install
+cd ..
+
+echo "INSTALL PHP"
 wget http://de2.php.net/get/php-5.4.15.tar.gz/from/this/mirror
 tar -zxf php-5.4.15.tar.gz
 cd php-5.4.15
 ./configure \
---with-libdir=lib64 \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
---with-layout=PHP \
 --with-apxs2=$OPENSHIFT_RUNTIME_DIR/srv/httpd/bin/apxs \
---enable-mbstring \
---enable-intl \
 --with-icu-dir=$OPENSHIFT_RUNTIME_DIR/srv/icu \
+--with-zlib=$OPENSHIFT_RUNTIME_DIR/srv/zlib \
+--with-libdir=lib64 \
+--with-layout=PHP \
+--with-gd \
 --with-curl \
 --with-mysqli \
---with-openssl
+--with-openssl \
+--enable-mbstring \
+--enable-intl \
+--enable-zip
 make && make install
 mkdir $OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2
 cd ..
 
-# Install APC
+echo "Install APC"
 wget http://pecl.php.net/get/APC-3.1.13.tgz
 tar -zxf APC-3.1.13.tgz
 cd APC-3.1.13
@@ -88,12 +100,7 @@ $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
 make && make install
 cd ..
 
-#
-# ADD elkuku - start
-#
-echo "KuKu start..."
-
-# Install xdebug
+echo "Install xdebug"
 wget http://xdebug.org/files/xdebug-2.2.3.tgz
 tar -zxf xdebug-2.2.3.tgz
 cd xdebug-2.2.3
@@ -103,19 +110,15 @@ $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
 make && cp modules/xdebug.so $OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no-debug-zts-20100525
 cd ..
 
-#
-# ADD elkuku - end
-#
-
-# Cleanup
+echo "Cleanup"
 rm -r $OPENSHIFT_RUNTIME_DIR/tmp/*.tar.gz
 rm -r $OPENSHIFT_RUNTIME_DIR/tmp/*.tgz
 
-# COPY TEMPLATES
+echo "COPY TEMPLATES"
 cp $OPENSHIFT_REPO_DIR/misc/templates/bash_profile.tpl $OPENSHIFT_HOMEDIR/app-root/data/.bash_profile
 python $OPENSHIFT_REPO_DIR/misc/parse_templates.py
 
-# START APACHE
+echo "START APACHE"
 $OPENSHIFT_RUNTIME_DIR/srv/httpd/bin/apachectl start
 
 echo "*****************************"
