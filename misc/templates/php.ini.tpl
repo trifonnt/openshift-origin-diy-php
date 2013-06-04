@@ -1812,10 +1812,28 @@ ldap.max_links = -1
 [dba]
 ;dba.default_handler=
 
-error_log = php_error.log
+error_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/php_error_log
 
 [xdebug]
 zend_extension = {{OPENSHIFT_RUNTIME_DIR}}/srv/php/lib/php/extensions/no-debug-zts-20100525/xdebug.so
+
+;xdebug.remote_enable = 1
+xdebug.remote_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs//xdebug_remote_log
+
+;xdebug.profiler_enable_trigger = 1
+xdebug.profiler_output_dir = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/profiles
+
+;xdebug.remote_port = 9000
+
+; Disable the PHP shut-up (@)
+xdebug.scream = 1
+
+;xdebug.file_link_format = xdebug://%f@%l
+
+xdebug.cli_color = 1;
+
+; composer (http://getcomposer.org) says she needs this
+detect_unicode = Off;
 
 ; Local Variables:
 ; tab-width: 4
