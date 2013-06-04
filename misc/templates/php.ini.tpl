@@ -1812,6 +1812,8 @@ ldap.max_links = -1
 [dba]
 ;dba.default_handler=
 
+error_log = php_error.log
+
 [xdebug]
 zend_extension = {{OPENSHIFT_RUNTIME_DIR}}/srv/php/lib/php/extensions/no-debug-zts-20100525/xdebug.so
 
