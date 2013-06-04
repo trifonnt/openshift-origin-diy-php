@@ -1812,6 +1812,9 @@ ldap.max_links = -1
 [dba]
 ;dba.default_handler=
 
+[xdebug]
+zend_extension = {{OPENSHIFT_RUNTIME_DIR}}/srv/php/lib/php/extensions/no-debug-zts-20100525/xdebug.so
+
 ; Local Variables:
 ; tab-width: 4
 ; End:
