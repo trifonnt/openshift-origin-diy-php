@@ -42,6 +42,7 @@ cd ../httpd-2.4.4
 --enable-headers
 make && make install
 
+# Cleanup
 cd ..
 rm -r $OPENSHIFT_RUNTIME_DIR/tmp/*.tar.gz
 
@@ -97,7 +98,7 @@ cd xdebug-2.2.3
 $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
 ./configure \
 --with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config
-make && cp modules/xdebug.so OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no-debug-zts-20100525
+make && cp modules/xdebug.so $OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no-debug-zts-20100525
 
 #
 # ADD elkuku - end
@@ -105,6 +106,7 @@ make && cp modules/xdebug.so OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no
 
 # CLEANUP
 rm -r $OPENSHIFT_RUNTIME_DIR/tmp/*.tar.gz
+rm -r $OPENSHIFT_RUNTIME_DIR/tmp/*.tgz
 
 # COPY TEMPLATES
 cp $OPENSHIFT_REPO_DIR/misc/templates/bash_profile.tpl $OPENSHIFT_HOMEDIR/app-root/data/.bash_profile
