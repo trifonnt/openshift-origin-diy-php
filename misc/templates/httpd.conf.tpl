@@ -209,8 +209,8 @@ ServerAdmin you@example.com
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "{{OPENSHIFT_REPO_DIR}}/diy"
-<Directory "{{OPENSHIFT_REPO_DIR}}/diy">
+DocumentRoot "{{OPENSHIFT_REPO_DIR}}/www"
+<Directory "{{OPENSHIFT_REPO_DIR}}/www">
     #
     # Possible values for the Options directive are "None", "All",
     # or any combination of:
