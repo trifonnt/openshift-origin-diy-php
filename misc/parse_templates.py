@@ -1,6 +1,6 @@
 import os, re, shutil
 
-internalIp = os.environ['OPENSHIFT_INTERNAL_IP']
+internalIp = os.environ['OPENSHIFT_DIY_IP']
 runtimeDir = os.environ['OPENSHIFT_HOMEDIR'] + "/app-root/runtime"
 repoDir = os.environ['OPENSHIFT_HOMEDIR'] + "/app-root/runtime/repo"
 
