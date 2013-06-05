@@ -1818,7 +1818,7 @@ error_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/php_error_log
 zend_extension = {{OPENSHIFT_RUNTIME_DIR}}/srv/php/lib/php/extensions/no-debug-zts-20100525/xdebug.so
 
 ;xdebug.remote_enable = 1
-xdebug.remote_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs//xdebug_remote_log
+xdebug.remote_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/xdebug_remote_log
 
 ;xdebug.profiler_enable_trigger = 1
 xdebug.profiler_output_dir = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/profiles
