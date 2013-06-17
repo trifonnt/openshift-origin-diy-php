@@ -66,9 +66,9 @@ make && make install
 cd ..
 
 echo "INSTALL PHP"
-wget http://de2.php.net/get/php-5.4.15.tar.gz/from/this/mirror
-tar -zxf php-5.4.15.tar.gz
-cd php-5.4.15
+wget http://de2.php.net/get/php-5.4.16.tar.gz/from/this/mirror
+tar -zxf php-5.4.16.tar.gz
+cd php-5.4.16
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
