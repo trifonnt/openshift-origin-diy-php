@@ -25,9 +25,9 @@ cd ..
 echo "Install Apache httpd"
 wget http://ftp.halifax.rwth-aachen.de/apache/httpd/httpd-2.4.4.tar.gz
 tar -zxf httpd-2.4.4.tar.gz
-wget http://artfiles.org/apache.org/apr/apr-1.4.6.tar.gz
-tar -zxf apr-1.4.6.tar.gz
-mv apr-1.4.6 httpd-2.4.4/srclib/apr
+wget http://artfiles.org/apache.org/apr/apr-1.4.8.tar.gz
+tar -zxf apr-1.4.8.tar.gz
+mv apr-1.4.8 httpd-2.4.4/srclib/apr
 wget http://artfiles.org/apache.org/apr/apr-util-1.5.2.tar.gz
 tar -zxf apr-util-1.5.2.tar.gz
 mv apr-util-1.5.2 httpd-2.4.4/srclib/apr-util
