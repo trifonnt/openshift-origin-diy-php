@@ -73,7 +73,6 @@ cd php-5.5.7
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
 --with-apxs2=$OPENSHIFT_RUNTIME_DIR/srv/httpd/bin/apxs \
---with-icu-dir=$OPENSHIFT_RUNTIME_DIR/srv/icu \
 --with-zlib=$OPENSHIFT_RUNTIME_DIR/srv/zlib \
 --with-libdir=lib64 \
 --with-layout=PHP \
@@ -82,8 +81,10 @@ cd php-5.5.7
 --with-mysqli \
 --with-openssl \
 --enable-mbstring \
---enable-intl \
 --enable-zip
+#--enable-intl \
+#--with-icu-dir=$OPENSHIFT_RUNTIME_DIR/srv/icu \
+
 make && make install
 mkdir $OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2
 cd ..
