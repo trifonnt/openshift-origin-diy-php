@@ -23,15 +23,15 @@ make && make install
 cd ..
 
 echo "Install Apache httpd"
-wget http://ftp.halifax.rwth-aachen.de/apache/httpd/httpd-2.4.4.tar.gz
-tar -zxf httpd-2.4.4.tar.gz
-wget http://artfiles.org/apache.org/apr/apr-1.4.8.tar.gz
-tar -zxf apr-1.4.8.tar.gz
-mv apr-1.4.8 httpd-2.4.4/srclib/apr
-wget http://artfiles.org/apache.org/apr/apr-util-1.5.2.tar.gz
-tar -zxf apr-util-1.5.2.tar.gz
-mv apr-util-1.5.2 httpd-2.4.4/srclib/apr-util
-cd httpd-2.4.4
+wget http://www.gtlib.gatech.edu/pub/apache//httpd/httpd-2.4.6.tar.gz
+tar -zxf httpd-2.4.6.tar.gz
+wget http://artfiles.org/apache.org/apr/apr-1.5.0.tar.gz
+tar -zxf apr-1.5.0.tar.gz
+mv apr-1.5.0 httpd-2.4.6/srclib/apr
+wget http://artfiles.org/apache.org/apr/apr-util-1.5.3.tar.gz
+tar -zxf apr-util-1.5.3.tar.gz
+mv apr-util-1.5.3 httpd-2.4.6/srclib/apr-util
+cd httpd-2.4.6
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/httpd \
 --with-included-apr \
@@ -46,15 +46,15 @@ cd httpd-2.4.4
 make && make install
 cd ..
 
-echo "INSTALL ICU"
-wget http://download.icu-project.org/files/icu4c/50.1/icu4c-50_1-src.tgz
-tar -zxf icu4c-50_1-src.tgz
-cd icu/source/
-chmod +x runConfigureICU configure install-sh
-./configure \
---prefix=$OPENSHIFT_RUNTIME_DIR/srv/icu/
-make && make install
-cd ../..
+#echo "INSTALL ICU"
+#wget http://download.icu-project.org/files/icu4c/50.1/icu4c-50_1-src.tgz
+#tar -zxf icu4c-50_1-src.tgz
+#cd icu/source/
+#chmod +x runConfigureICU configure install-sh
+#./configure \
+#--prefix=$OPENSHIFT_RUNTIME_DIR/srv/icu/
+#make && make install
+#cd ../..
 
 echo "Install zlib"
 wget http://zlib.net/zlib-1.2.8.tar.gz
@@ -88,17 +88,17 @@ make && make install
 mkdir $OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2
 cd ..
 
-echo "Install APC"
-wget http://pecl.php.net/get/APC-3.1.13.tgz
-tar -zxf APC-3.1.13.tgz
-cd APC-3.1.13
-$OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
-./configure \
---with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config \
---enable-apc \
---enable-apc-debug=no
-make && make install
-cd ..
+#echo "Install APC"
+#wget http://pecl.php.net/get/APC-3.1.13.tgz
+#tar -zxf APC-3.1.13.tgz
+#cd APC-3.1.13
+#$OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
+#./configure \
+#--with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config \
+#--enable-apc \
+#--enable-apc-debug=no
+#make && make install
+#cd ..
 
 echo "Install xdebug"
 wget http://xdebug.org/files/xdebug-2.2.3.tgz
