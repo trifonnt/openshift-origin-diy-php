@@ -1,7 +1,7 @@
 # Warning: Be careful with modifications to this file,
 #          Your changes may cause your application to fail.
 
-alias php54='$OPENSHIFT_HOMEDIR/app-root/runtime/srv/php/bin/php'
+alias php5='$OPENSHIFT_HOMEDIR/app-root/runtime/srv/php/bin/php'
 alias l='ls -alF'
 alias ..='cd ..'
 
