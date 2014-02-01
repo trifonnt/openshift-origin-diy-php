@@ -1,21 +1,20 @@
 openshift-diy-php
 ============================
 
-This is a sample repository to get a custom PHP version running on openshift. It's a
-work in progress!
+This is a sample repository to get a custom PHP version running on [openshift](https://openshift.redhat.com).
 
-More information about this project: tbd
-
-More information about openshift: https://openshift.redhat.com/
+It's a work in progress!
 
 What's inside
 -------------
 
 The misc/install.sh script installs:
 
-* Apache 2.4.4
-* PHP 5.4.17
-    PHP 5.5.x in a separate branch
+* [Apache HTTP server](http://projects.apache.org/projects/http_server.html)
+* [PHP](http://php.net/)
+* [XDebug](http://xdebug.org)
+
+**Note** that different branches exists for ther respective PHP versions (WIP)
 
 It configures apache to have the www folder as the document root. It also
 uses the php.ini-development from the php archive and moves it into the
@@ -35,11 +34,10 @@ Usage
 
 To get your custom PHP version working at OpenShift, you have to do the following:
 
-1. Create a new Openshift "Do-It-Yourself" application
-2. Clone this repository
-    Optionally you might want to change to a different branch.
-3. Add a new remote "openshift" (You can find the URL to your git repository
-   on the Openshift application page)
+1. Create a new Openshift "Do-It-Yourself" application.
+2. Clone this repository.
+    * ! Optionally you might want to change to a different branch to get a different PHP version.
+3. Add a new remote "openshift" (You can find the URL to your git repository on the Openshift application page)
 4. Run `git push --force "openshift" master:master`
 5. SSH into your gear
 6. `nohup $OPENSHIFT_REPO_DIR/misc/install.sh > $OPENSHIFT_DIY_LOG_DIR/install.log`
@@ -58,11 +56,3 @@ Thanks to the following people (ordered by name):
 
 * [@marekjelen](https://github.com/marekjelen)
 * [@venu](https://github.com/venu)
-
-Todos
------
-
-This is stuff which needs to be done right now. Feel free to do a pull request!
-
-* Add config description
-* (Add link to blog with more in-depth explanation)
