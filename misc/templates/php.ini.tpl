@@ -1815,7 +1815,7 @@ ldap.max_links = -1
 error_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/php_error_log
 
 [xdebug]
-zend_extension = {{OPENSHIFT_RUNTIME_DIR}}/srv/php/lib/php/extensions/no-debug-zts-20100525/xdebug.so
+zend_extension = {{OPENSHIFT_RUNTIME_DIR}}/srv/php/lib/php/extensions/xdebug.so
 
 ;xdebug.remote_enable = 1
 xdebug.remote_log = {{OPENSHIFT_RUNTIME_DIR}}/srv/httpd/logs/xdebug_remote_log

@@ -108,7 +108,7 @@ cd xdebug-2.2.3
 $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
 ./configure \
 --with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config
-make && cp modules/xdebug.so $OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions/no-debug-zts-20100525
+make && cp modules/xdebug.so $OPENSHIFT_RUNTIME_DIR/srv/php/lib/php/extensions
 cd ..
 
 echo "Cleanup"
