@@ -84,7 +84,7 @@ make && make install
 cd ..
 
 echo "INSTALL PHP"
-wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror
+wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror -O php-$VERSION_PHP.tar.gz
 tar -zxf php-$VERSION_PHP.tar.gz
 cd php-$VERSION_PHP
 ./configure \
