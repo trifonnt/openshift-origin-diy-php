@@ -92,16 +92,27 @@ echo "INSTALL PHP $VERSION_PHP"
 
 if [ "git" = $VERSION_PHP ]
   then
+	wget http://ftp.gnu.org/gnu/bison/bison-2.7.tar.gz
+	tar -xvzf bison-2.7.tar.gz
+	cd bison-2.7
+	./configure \
+	--prefix=$OPENSHIFT_RUNTIME_DIR/tmp/bison/ \
+	make && make install
+	cd ..
+
     wget https://github.com/php/php-src/archive/master.tar.gz
     tar -zxf master.tar.gz
     cd php-src-master
+	YACC="YACC=../bison/bin/bison "
+	$YACC ./buildconfig
 else
     wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror -O php-$VERSION_PHP.tar.gz
     tar -zxf php-$VERSION_PHP.tar.gz
     cd php-$VERSION_PHP
+	YACC=""
 fi
 
-./configure \
+$YACC./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
 --with-apxs2=$OPENSHIFT_RUNTIME_DIR/srv/httpd/bin/apxs \
