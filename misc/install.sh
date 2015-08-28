@@ -3,6 +3,24 @@
 OPENSHIFT_RUNTIME_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime
 OPENSHIFT_REPO_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime/repo
 
+# PHP https://secure.php.net/downloads.php
+VERSION_PHP=5.6.12
+
+# Apache http://www.gtlib.gatech.edu/pub/apache/httpd/
+VERSION_APACHE=2.4.16
+# APR http://artfiles.org/apache.org/apr/
+VERSION_APR=1.5.2
+VERSION_APR_UTIL=1.5.4
+
+# PCRE ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre
+VERSION_PCRE=8.37
+
+# XDebug http://xdebug.org/files/
+VERSION_XDEBUG=2.3.3
+
+# ZLib http://zlib.net/
+VERSION_ZLIB=1.2.8
+
 echo "Prepare directories"
 cd $OPENSHIFT_RUNTIME_DIR
 mkdir srv
@@ -14,24 +32,24 @@ mkdir tmp
 cd tmp/
 
 echo "Install pcre"
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.33.tar.gz
-tar -zxf pcre-8.33.tar.gz
-cd pcre-8.33
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$VERSION_PCRE.tar.gz
+tar -zxf pcre-$VERSION_PCRE.tar.gz
+cd pcre-$VERSION_PCRE
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/pcre
 make && make install
 cd ..
 
 echo "Install Apache httpd"
-wget http://www.gtlib.gatech.edu/pub/apache//httpd/httpd-2.4.7.tar.gz
-tar -zxf httpd-2.4.7.tar.gz
-wget http://artfiles.org/apache.org/apr/apr-1.5.0.tar.gz
-tar -zxf apr-1.5.0.tar.gz
-mv apr-1.5.0 httpd-2.4.7/srclib/apr
-wget http://artfiles.org/apache.org/apr/apr-util-1.5.3.tar.gz
-tar -zxf apr-util-1.5.3.tar.gz
-mv apr-util-1.5.3 httpd-2.4.7/srclib/apr-util
-cd httpd-2.4.7
+wget http://www.gtlib.gatech.edu/pub/apache/httpd/httpd-$VERSION_APACHE.tar.gz
+tar -zxf httpd-$VERSION_APACHE.tar.gz
+wget http://artfiles.org/apache.org/apr/apr-$VERSION_APR.tar.gz
+tar -zxf apr-$VERSION_APR.tar.gz
+mv apr-$VERSION_APR httpd-$VERSION_APACHE/srclib/apr
+wget http://artfiles.org/apache.org/apr/apr-util-$VERSION_APR_UTIL.tar.gz
+tar -zxf apr-util-$VERSION_APR_UTIL.tar.gz
+mv apr-util-$VERSION_APR_UTIL httpd-$VERSION_APACHE/srclib/apr-util
+cd httpd-$VERSION_APACHE
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/httpd \
 --with-included-apr \
@@ -57,18 +75,18 @@ cd ..
 #cd ../..
 
 echo "Install zlib"
-wget http://zlib.net/zlib-1.2.8.tar.gz
-tar -zxf zlib-1.2.8.tar.gz
-cd zlib-1.2.8
+wget http://zlib.net/zlib-$VERSION_ZLIB.tar.gz
+tar -zxf zlib-$VERSION_ZLIB.tar.gz
+cd zlib-$VERSION_ZLIB
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/zlib/
 make && make install
 cd ..
 
 echo "INSTALL PHP"
-wget http://de2.php.net/get/php-5.5.9.tar.gz/from/this/mirror
-tar -zxf php-5.5.9.tar.gz
-cd php-5.5.9
+wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror
+tar -zxf php-$VERSION_PHP.tar.gz
+cd php-$VERSION_PHP
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
@@ -102,9 +120,9 @@ cd ..
 #cd ..
 
 echo "Install xdebug"
-wget http://xdebug.org/files/xdebug-2.2.3.tgz
-tar -zxf xdebug-2.2.3.tgz
-cd xdebug-2.2.3
+wget http://xdebug.org/files/xdebug-$VERSION_XDEBUG.tgz
+tar -zxf xdebug-$VERSION_XDEBUG.tgz
+cd xdebug-$VERSION_XDEBUG
 $OPENSHIFT_RUNTIME_DIR/srv/php/bin/phpize
 ./configure \
 --with-php-config=$OPENSHIFT_RUNTIME_DIR/srv/php/bin/php-config
