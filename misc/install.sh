@@ -94,7 +94,7 @@ if [ "git" = $VERSION_PHP ]
   then
     wget https://github.com/php/php-src/archive/master.tar.gz
     tar -zxf master.tar.gz
-    cd master
+    cd php-src-master
 else
     wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror -O php-$VERSION_PHP.tar.gz
     tar -zxf php-$VERSION_PHP.tar.gz
