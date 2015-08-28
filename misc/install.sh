@@ -4,7 +4,9 @@ OPENSHIFT_RUNTIME_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime
 OPENSHIFT_REPO_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime/repo
 
 # PHP https://secure.php.net/downloads.php
-VERSION_PHP=5.6.12
+# NOTE: If VERSION_PHP is set to "git" a checkout from the development sources will be performed instead.
+#VERSION_PHP=5.6.12
+VERSION_PHP=git
 
 # Apache http://www.gtlib.gatech.edu/pub/apache/httpd/
 VERSION_APACHE=2.4.16
@@ -83,10 +85,19 @@ cd zlib-$VERSION_ZLIB
 make && make install
 cd ..
 
-echo "INSTALL PHP"
-wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror -O php-$VERSION_PHP.tar.gz
-tar -zxf php-$VERSION_PHP.tar.gz
-cd php-$VERSION_PHP
+echo "INSTALL PHP $VERSION_PHP"
+
+if [ "git" = $VERSION_PHP ]
+  then
+  echo "Clonig the repo..."
+    git clone https://github.com/php/php-src.git
+    cd php-src.git
+else
+    wget http://de2.php.net/get/php-$VERSION_PHP.tar.gz/from/this/mirror -O php-$VERSION_PHP.tar.gz
+    tar -zxf php-$VERSION_PHP.tar.gz
+    cd php-$VERSION_PHP
+fi
+
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
