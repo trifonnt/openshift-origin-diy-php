@@ -36,11 +36,14 @@ cd tmp/
 echo "Install pcre"
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$VERSION_PCRE.tar.gz
 tar -zxf pcre-$VERSION_PCRE.tar.gz
+rm pcre-$VERSION_PCRE.tar.gz
 cd pcre-$VERSION_PCRE
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/pcre
 make && make install
 cd ..
+
+rm -rF pcre-$VERSION_PCRE
 
 echo "Install Apache httpd"
 wget http://www.gtlib.gatech.edu/pub/apache/httpd/httpd-$VERSION_APACHE.tar.gz
