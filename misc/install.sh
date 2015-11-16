@@ -1,6 +1,8 @@
 #!/bin/sh
 
-OPENSHIFT_RUNTIME_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime
+# @Trifon
+#OPENSHIFT_RUNTIME_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime
+OPENSHIFT_RUNTIME_DIR=$OPENSHIFT_DATA_DIR
 OPENSHIFT_REPO_DIR=$OPENSHIFT_HOMEDIR/app-root/runtime/repo
 
 echo "Prepare directories"
