@@ -1,7 +1,7 @@
 import os, re, shutil
 
 internalIp = os.environ['OPENSHIFT_DIY_IP']
-runtimeDir = os.environ['OPENSHIFT_HOMEDIR'] + "/app-root/runtime"
+runtimeDir = os.environ['OPENSHIFT_HOMEDIR'] + "/app-root/data"
 repoDir = os.environ['OPENSHIFT_HOMEDIR'] + "/app-root/runtime/repo"
 
 f = open(repoDir + '/misc/templates/httpd.conf.tpl', 'r')
