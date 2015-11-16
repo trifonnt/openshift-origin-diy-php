@@ -16,24 +16,24 @@ mkdir tmp
 cd tmp/
 
 echo "Install pcre"
-wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.33.tar.gz
-tar -zxf pcre-8.33.tar.gz
-cd pcre-8.33
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz
+tar -zxf pcre-8.36.tar.gz
+cd pcre-8.36
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/pcre
 make && make install
 cd ..
 
 echo "Install Apache httpd"
-wget http://www.gtlib.gatech.edu/pub/apache//httpd/httpd-2.4.7.tar.gz
-tar -zxf httpd-2.4.7.tar.gz
-wget http://artfiles.org/apache.org/apr/apr-1.5.0.tar.gz
-tar -zxf apr-1.5.0.tar.gz
-mv apr-1.5.0 httpd-2.4.7/srclib/apr
-wget http://artfiles.org/apache.org/apr/apr-util-1.5.3.tar.gz
-tar -zxf apr-util-1.5.3.tar.gz
-mv apr-util-1.5.3 httpd-2.4.7/srclib/apr-util
-cd httpd-2.4.7
+wget http://www.gtlib.gatech.edu/pub/apache/httpd/httpd-2.4.17.tar.gz
+tar -zxf httpd-2.4.17.tar.gz
+wget http://artfiles.org/apache.org/apr/apr-1.5.2.tar.gz
+tar -zxf apr-1.5.2.tar.gz
+mv apr-1.5.2 httpd-2.4.17/srclib/apr
+wget http://artfiles.org/apache.org/apr/apr-util-1.5.4.tar.gz
+tar -zxf apr-util-1.5.4.tar.gz
+mv apr-util-1.5.4 httpd-2.4.17/srclib/apr-util
+cd httpd-2.4.17
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/httpd \
 --with-included-apr \
@@ -68,9 +68,9 @@ make && make install
 cd ..
 
 echo "INSTALL PHP"
-wget http://downloads.php.net/tyrael/php-5.6.0alpha1.tar.gz
-tar -zxf php-5.6.0alpha1.tar.gz
-cd php-5.6.0alpha1
+wget http://bg2.php.net/distributions/php-5.6.15.tar.gz
+tar -zxf php-5.6.15.tar.gz
+cd php-5.6.15
 ./configure \
 --prefix=$OPENSHIFT_RUNTIME_DIR/srv/php/ \
 --with-config-file-path=$OPENSHIFT_RUNTIME_DIR/srv/php/etc/apache2 \
